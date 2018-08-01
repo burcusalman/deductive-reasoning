@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from proofs.models import Proposition, Proof
 from .forms import MajorSubmissionForm
@@ -69,6 +70,6 @@ def submit(request):
 				minor=minor,
 				conclusion=conclusion
 			)
-			return redirect(reverse("proposition_detail", args=[conclusion.id]))
+			return HttpResponseRedirect(reverse("proposition_detail", args=(conclusion.id,)))
 
 	return render(request ,"submit.html", {'form': form})
